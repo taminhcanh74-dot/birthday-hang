@@ -1,190 +1,178 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>Thiệp sinh nhật của Hằng</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
 <style>
-  *{ box-sizing:border-box; }
+  * { box-sizing: border-box; }
 
-  body{
-    margin:0;
-    padding:0;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-family:'Poppins',sans-serif;
-    color:#222;
-    overflow:hidden;
-    background: radial-gradient(circle at top, #ffe6f6 0, #e8f3ff 45%, #f3ecff 100%);
-    background-size:200% 200%;
-    animation:bgMove 14s ease-in-out infinite;
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    background: radial-gradient(circle at top, #ffe6f6 0%, #e8f3ff 45%, #f3ecff 100%);
+    background-size: 200% 200%;
+    animation: bgMove 14s ease-in-out infinite;
+    overflow: hidden;
   }
 
-  @keyframes bgMove{
-    0%{ background-position:0% 0%; }
-    50%{ background-position:100% 100%; }
-    100%{ background-position:0% 0%; }
+  @keyframes bgMove {
+    0% { background-position: 0% 0%; }
+    50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
   }
 
-  #confetti, #hearts{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    overflow:hidden;
-    z-index:2;
+  #confetti, #hearts {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 2;
   }
 
-  #card{
-    width:90%;
-    max-width:480px;
-    background:rgba(255,255,255,0.96);
-    border-radius:24px;
-    padding:22px 22px 30px;
+  #card {
+    width: 90%;
+    max-width: 480px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 24px;
+    padding: 22px 22px 30px;
     box-shadow:
-      0 18px 40px rgba(0,0,0,0.15),
-      0 0 0 1px rgba(255,255,255,0.7);
-    transform:scale(0.86) translateY(20px);
-    opacity:0;
-    transition:0.55s ease;
-    position:relative;
-    z-index:3;
+      0 18px 40px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(255, 255, 255, 0.7);
+    transform: scale(0.86) translateY(20px);
+    opacity: 0;
+    transition: 0.55s ease;
+    position: relative;
+    z-index: 3;
   }
-  #card.show{
-    transform:scale(1) translateY(0);
-    opacity:1;
-  }
-
-  .ribbon{
-    position:absolute;
-    top:12px;
-    left:50%;
-    transform:translateX(-50%);
-    background:linear-gradient(90deg,#ff9acb,#ffd08a);
-    color:white;
-    padding:4px 18px;
-    border-radius:999px;
-    font-size:13px;
-    letter-spacing:0.03em;
-    box-shadow:0 4px 10px rgba(255,150,200,0.6);
+  #card.show {
+    transform: scale(1) translateY(0);
+    opacity: 1;
   }
 
-  #photo{
-    width:100%;
-    border-radius:18px;
-    margin-top:32px;
-    box-shadow:0 10px 24px rgba(0,0,0,0.28);
-    object-fit:cover;
-    max-height:360px;
+  .ribbon {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #ff9acb, #ffd08a);
+    color: white;
+    padding: 4px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    box-shadow: 0 4px 10px rgba(255, 150, 200, 0.6);
   }
 
-  #photoGlow{
-    position:absolute;
-    inset:46px 30px auto 30px;
-    height:120px;
-    background:radial-gradient(circle at center, rgba(255,186,220,0.8), transparent 70%);
-    filter:blur(18px);
-    opacity:0;
-    transition:0.6s;
-    z-index:-1;
-  }
-  #card.show #photoGlow{ opacity:1; }
-
-  h2{
-    margin:20px 0 8px;
-    font-size:20px;
-    text-align:center;
+  #photo {
+    width: 100%;
+    border-radius: 18px;
+    margin-top: 40px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+    max-height: 360px;
+    object-fit: cover;
   }
 
-  .subtitle{
-    text-align:center;
-    font-size:13px;
-    color:#777;
-    margin-bottom:12px;
+  #photoGlow {
+    position: absolute;
+    inset: 46px 30px auto 30px;
+    height: 120px;
+    background: radial-gradient(circle at center, rgba(255, 186, 220, 0.8), transparent 70%);
+    filter: blur(18px);
+    opacity: 0;
+    transition: 0.6s;
+    z-index: -1;
+  }
+  #card.show #photoGlow { opacity: 1; }
+
+  h2 {
+    margin: 24px 0 8px;
+    font-size: 20px;
+    text-align: center;
   }
 
-  #typedText{
-    font-size:15px;
-    line-height:1.7;
-    white-space:pre-line;
-    margin-top:8px;
+  .subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: #777;
+    margin-bottom: 12px;
   }
 
-  #copyBtn{
-    margin-top:18px;
-    background:linear-gradient(90deg,#ff9fd1,#ffc58e);
-    border:none;
-    padding:10px 18px;
-    border-radius:999px;
-    font-size:14px;
-    cursor:pointer;
-    color:#fff;
-    display:block;
-    margin-inline:auto;
-    box-shadow:0 6px 14px rgba(255,150,200,0.65);
-    transition:0.2s;
-  }
-  #copyBtn:hover{
-    transform:translateY(-1px);
-    box-shadow:0 10px 22px rgba(255,150,200,0.75);
+  #typedText {
+    font-size: 15px;
+    line-height: 1.7;
+    white-space: pre-line;
+    margin-top: 8px;
   }
 
-  #openBtn{
-    position:fixed;
-    bottom:26px;
-    right:26px;
-    padding:12px 18px;
-    border-radius:999px;
-    border:none;
-    background:rgba(255,255,255,0.9);
-    box-shadow:0 10px 28px rgba(0,0,0,0.18);
-    cursor:pointer;
-    font-size:14px;
-    display:flex;
-    align-items:center;
-    gap:8px;
-    z-index:4;
-    backdrop-filter:blur(10px);
+  #copyBtn {
+    margin-top: 18px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    background: linear-gradient(90deg, #ff9fd1, #ffc58e);
+    box-shadow: 0 6px 14px rgba(255, 150, 200, 0.65);
+    display: block;
+    margin-inline: auto;
+    transition: 0.2s;
   }
-  #openBtn span.icon{
-    font-size:18px;
+  #copyBtn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 22px rgba(255, 150, 200, 0.75);
   }
 
-  #openBtn.hide{ display:none; }
+  #openBtn {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    cursor: pointer;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 4;
+    backdrop-filter: blur(10px);
+  }
+  #openBtn.hide { display: none; }
+  #openBtn span.icon { font-size: 18px; }
 
-  #confetti .c{
-    position:absolute;
-    top:-20px;
-    animation:fall linear forwards;
+  #confetti .c {
+    position: absolute;
+    top: -20px;
+    animation: fall linear forwards;
   }
-  @keyframes fall{
-    to{ transform:translateY(110vh) rotate(360deg); opacity:0; }
-  }
-
-  #hearts .h{
-    position:absolute;
-    bottom:-20px;
-    font-size:18px;
-    animation:rise 3.2s ease-out forwards;
-    opacity:0.9;
-  }
-  @keyframes rise{
-    0%{ transform:translateY(0) translateX(0) scale(0.9); opacity:0; }
-    20%{ opacity:1; }
-    100%{ transform:translateY(-110vh) translateX(40px) scale(1.4); opacity:0; }
+  @keyframes fall {
+    to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
   }
 
-  audio{ display:none; }
-
-  @media (max-width:480px){
-    #card{ padding:18px 16px 26px; }
-    h2{ font-size:18px; }
-    #typedText{ font-size:14px; }
-    #openBtn{ left:50%; right:auto; transform:translateX(-50%); }
+  #hearts .h {
+    position: absolute;
+    bottom: -20px;
+    font-size: 18px;
+    animation: rise 3.2s ease-out forwards;
+    opacity: 0.9;
   }
+  @keyframes rise {
+    0% { transform: translateY(0) scale(0.9); opacity: 0; }
+    20% { opacity: 1; }
+    100% { transform: translateY(-110vh) scale(1.4); opacity: 0; }
+  }
+
+  audio { display: none; }
 </style>
 </head>
 
@@ -197,9 +185,7 @@
   <div class="ribbon">Happy Birthday Hằng 🎂</div>
   <div id="photoGlow"></div>
 
-  <!-- ẢNH CỦA HẰNG: THAY LINK Ở ĐÂY -->
-  <img id="photo" src="https://drive.google.com/uc?export=view&id=1myCiRgAsk-reBzEG5A79i4vkICMwydpK
-" alt="Hằng">
+  <img id="photo" src="https://drive.google.com/uc?export=view&id=1myCiRgAsk-reBzEG5A79i4vkICMwydpK" alt="Hằng" />
 
   <h2>Chúc mừng sinh nhật Hằng</h2>
   <div class="subtitle">Một tấm thiệp nhỏ, gửi cậu cả bầu trời dịu dàng.</div>
@@ -214,10 +200,8 @@
   <span>Mở thiệp của Hằng</span>
 </button>
 
-<!-- NHẠC NỀN: THAY LINK MP3 Ở ĐÂY -->
 <audio id="bgm" loop>
-  <source src="https://drive.google.com/uc?export=download&id=1UuHMz1Atougemog6V1jKt6V8WvKLI3XB
-" type="audio/mpeg">
+  <source src="https://drive.google.com/uc?export=download&id=1UuHMz1Atougemog6V1jKt6V8WvKLI3XB" type="audio/mpeg" />
 </audio>
 
 <script>
@@ -228,92 +212,23 @@ Hy vọng tuổi mới sẽ mở ra những ngày đẹp hơn, nơi những đi�
 
 Chúc bro luôn giữ được sự dịu dàng mà ai cũng quý, và mỉm cười nhiều hơn không chỉ hôm nay mà cả những ngày sau nữa nha ❤️`;
 
-/* Gõ chữ */
-function typeText(el, text, speed=22){
+function typeText(el, text, speed = 22) {
   el.textContent = "";
   let i = 0;
-  (function step(){
-    if(i < text.length){
+  (function step() {
+    if (i < text.length) {
       el.textContent += text[i++];
       setTimeout(step, speed);
     }
   })();
 }
 
-/* Confetti */
-function spawnConfetti(num = 42){
-  const container = document.getElementById('confetti');
-  const colors = ['#FF6B6B','#FFD166','#6EE7B7','#7DD3FC','#C7B3FF','#FFB6C1','#FEC3A6'];
-  for(let i=0;i<num;i++){
-    const div = document.createElement('div');
-    div.className = 'c';
-    div.style.left = (Math.random()*100) + 'vw';
-    div.style.background = colors[Math.floor(Math.random()*colors.length)];
-    div.style.width = (6 + Math.random()*13) + 'px';
-    div.style.height = (8 + Math.random()*20) + 'px';
-    div.style.borderRadius = Math.random()>0.6? '2px' : '50%';
-    div.style.animationDuration = (1600 + Math.random()*1600) + 'ms';
-    container.appendChild(div);
-    setTimeout(()=> div.remove(), 3800);
-  }
-}
+function spawnConfetti(num = 40) {
+  const box = document.getElementById("confetti");
+  const colors = ["#FF6B6B","#FFD166","#6EE7B7","#7DD3FC","#C7B3FF","#FFB6C1","#FEC3A6"];
 
-/* Hearts */
-function spawnHearts(num = 14){
-  const wrap = document.getElementById('hearts');
-  for(let i=0;i<num;i++){
-    const span = document.createElement('div');
-    span.className = 'h';
-    span.textContent = ['💗','💞','💓','💕'][ Math.floor(Math.random()*4) ];
-    span.style.left = (10 + Math.random()*80) + 'vw';
-    span.style.animationDelay = (Math.random()*1.6) + 's';
-    wrap.appendChild(span);
-    setTimeout(()=> span.remove(), 3500);
-  }
-}
-
-/* Play music nếu có link */
-function playMusic(){
-  const audio = document.getElementById('bgm');
-  if(audio && audio.querySelector('source').src && !audio.dataset.played){
-    audio.play().catch(()=>{});
-    audio.dataset.played = "true";
-  }
-}
-
-/* Mở thiệp */
-function openCard(){
-  const card = document.getElementById('card');
-  const openBtn = document.getElementById('openBtn');
-  const typed = document.getElementById('typedText');
-
-  card.classList.add('show');
-  openBtn.classList.add('hide');
-
-  typeText(typed, wish, 22);
-  spawnConfetti(40);
-  spawnHearts(18);
-  playMusic();
-}
-
-/* Nút mở thiệp */
-document.getElementById('openBtn').addEventListener('click', openCard);
-
-/* Copy lời chúc */
-document.getElementById('copyBtn').onclick = ()=>{
-  navigator.clipboard.writeText(wish);
-  alert("Đã sao chép lời chúc!");
-};
-
-/* Auto mở nếu có #open */
-window.addEventListener('load', ()=>{
-  setTimeout(()=>{
-    if(location.hash === '#open'){
-      openCard();
-    }
-  }, 500);
-});
-</script>
-
-</body>
-</html>
+  for (let i = 0; i < num; i++) {
+    const d = document.createElement("div");
+    d.className = "c";
+    d.style.left = Math.random() * 100 + "vw";
+ the end
